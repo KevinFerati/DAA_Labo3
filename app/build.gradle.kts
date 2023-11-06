@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "ch.heigvd.daa.labo3"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ch.heigvd.daa.labo3"
