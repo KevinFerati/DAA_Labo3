@@ -1,29 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tool+s"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Common data -->
-    <TextView
+    <!-- Title and field separation guideline -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/field_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="180dp" />
+
+    <!-- Common data -->
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_group_height"
         android:text="@string/main_base_title"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Name  -->
+        <TextView
+            style="@style/Field"
+            android:id="@+id/main_base_name_title"
+            android:text="@string/main_base_name_title"
+            app:layout_constraintTop_toBottomOf="@id/main_title" />
+
+        <EditText
+            style="@style/TextInput"
+            app:layout_constraintTop_toBottomOf="@id/main_title" />
+
+    <!-- First name -->
+        <TextView
+            style="@style/Field"
+            android:id="@+id/main_base_firstname_title"
+            android:text="@string/main_base_firstname_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_name_title" />
+
+        <EditText
+            style="@style/TextInput"
+            app:layout_constraintTop_toBottomOf="@id/main_base_name_title" />
+
+    <!-- Birthday -->
+        <TextView
+            style="@style/Field"
+            android:id="@+id/main_base_birthdate_title"
+            android:text="@string/main_base_birthdate_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_firstname_title" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_group_height"
+            android:id="@+id/main_base_birthdate_input"
+            app:layout_constraintStart_toEndOf="@id/field_guideline"
+            app:layout_constraintEnd_toEndOf="@id/main_base_birthdate_icon"
+            android:inputType="date"
+            app:layout_constraintTop_toBottomOf="@id/main_base_firstname_title" />
+
+        <ImageButton
+            android:id="@+id/main_base_birthdate_icon"
+            android:layout_width="@dimen/input_group_height"
+            android:layout_height="@dimen/input_group_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_base_firstname_title"
+            android:background="@drawable/cake" />
 
 
+    <!-- Nationality -->
 
+        <TextView
+            style="@style/Field"
+            android:id="@+id/main_base_nationality_title"
+            android:text="@string/main_base_nationality_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_birthdate_title" />
 
+        <Spinner
+            style="@style/Input"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_group_height"
+            app:layout_constraintTop_toBottomOf="@id/main_base_birthdate_title"
+            android:entries="@array/nationalities" />
+
+    <!-- Occupation -->
 
     <!-- Students  -->
     <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
-
 
 
     <!-- Employee -->
