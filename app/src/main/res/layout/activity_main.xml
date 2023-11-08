@@ -17,8 +17,7 @@
     <!-- Common data -->
     <TextView
         android:id="@+id/main_title"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/input_group_height"
+        style="@style/SectionTitle"
         android:text="@string/main_base_title"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +29,7 @@
             app:layout_constraintTop_toBottomOf="@id/main_title" />
 
         <EditText
+            android:hint="@string/main_base_name_title"
             style="@style/TextInput"
             app:layout_constraintTop_toBottomOf="@id/main_title" />
 
@@ -42,6 +42,7 @@
 
         <EditText
             style="@style/TextInput"
+            android:hint="@string/main_base_firstname_title"
             app:layout_constraintTop_toBottomOf="@id/main_base_name_title" />
 
     <!-- Birthday -->
@@ -86,11 +87,61 @@
 
     <!-- Occupation -->
 
-    <!-- Students  -->
+        <TextView
+            style="@style/Field"
+            android:id="@+id/main_base_occupation_title"
+            android:text="@string/main_base_occupation_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_nationality_title" />
+
+        <RadioGroup
+            android:id="@+id/main_base_occupation_group"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_group_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_base_occupation_title">
+            <RadioButton
+                android:text="@string/main_base_occupation_student"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </RadioButton>
+
+            <RadioButton
+                android:text="@string/main_base_occupation_worker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+            </RadioButton>
+        </RadioGroup>
+
+    <!--region Students  -->
     <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+        <TextView
+            style="@style/SectionTitle"
+            android:id="@+id/main_specific_students_title"
+            android:text="@string/main_specific_students_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_occupation_group"  />
+        <!-- Students - School -->
+    
+            <TextView
+                style="@style/Field"
+                app:layout_constraintTop_toBottomOf="@id/main_specific_students_title"
+                android:text="@string/main_specific_school_title" />
+            <EditText
+                style="@style/TextInput"
+                android:hint="@string/main_specific_school_title"
+                app:layout_constraintTop_toBottomOf="@id/main_specific_students_title"
+                />
 
+        <!-- -->
+                
+    <!--endregion-->
 
     <!-- Employee -->
     <androidx.constraintlayout.widget.Group

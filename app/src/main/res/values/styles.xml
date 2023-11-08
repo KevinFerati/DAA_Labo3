@@ -15,4 +15,9 @@
     <style name="TextInput" parent="Input">
         <item name="android:inputType">text</item>
     </style>
+    <style name="SectionTitle">
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/input_group_height</item>
+    </style>
 </resources>
