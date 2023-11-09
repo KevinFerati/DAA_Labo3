@@ -80,8 +80,6 @@
 
         <Spinner
             style="@style/Input"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/input_group_height"
             app:layout_constraintTop_toBottomOf="@id/main_base_birthdate_title"
             android:entries="@array/nationalities" />
 
@@ -121,7 +119,10 @@
     <!--region Students  -->
     <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="main_specific_graduationyear_title,main_specific_graduationyear_input,main_specific_students_title,main_specific_school_title,main_specific_school_input"
+        />
         <TextView
             style="@style/SectionTitle"
             android:id="@+id/main_specific_students_title"
@@ -131,25 +132,89 @@
     
             <TextView
                 style="@style/Field"
+                android:id="@+id/main_specific_school_title"
                 app:layout_constraintTop_toBottomOf="@id/main_specific_students_title"
                 android:text="@string/main_specific_school_title" />
             <EditText
+                android:id="@+id/main_specific_school_input"
                 style="@style/TextInput"
                 android:hint="@string/main_specific_school_title"
                 app:layout_constraintTop_toBottomOf="@id/main_specific_students_title"
                 />
 
-        <!-- -->
-                
+        <!--  Students - Year -->
+
+            <TextView
+                android:id="@+id/main_specific_graduationyear_title"
+                style="@style/Field"
+                app:layout_constraintTop_toBottomOf="@id/main_specific_school_input"
+                android:text="@string/main_specific_graduationyear_title" />
+            <EditText
+                android:id="@+id/main_specific_graduationyear_input"
+                style="@style/Input"
+                android:inputType="number"
+                android:hint="@string/main_specific_graduationyear_title"
+                app:layout_constraintTop_toBottomOf="@id/main_specific_school_input"
+                />
     <!--endregion-->
 
     <!-- Employee -->
     <androidx.constraintlayout.widget.Group
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="main_specific_workers_title"
+        />
 
-    </androidx.constraintlayout.widget.Group>
+        <TextView
+            style="@style/SectionTitle"
+            android:tag="a"
+            android:id="@+id/main_specific_workers_title"
+            android:text="@string/main_specific_workers_title"
+            app:layout_constraintTop_toBottomOf="@id/main_base_occupation_group"  />
+
+        <!--  Employee - Compagny -->
+        <TextView
+            android:id="@+id/main_specific_compagny_title"
+            style="@style/Field"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_workers_title"
+            android:text="@string/main_specific_compagny_title" />
+        <EditText
+            android:id="@+id/main_specific_compagny_input"
+            style="@style/TextInput"
+            android:inputType="number"
+            android:hint="@string/main_specific_compagny_title"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_workers_title"
+            />
+
+        <!--  Employee - Sector -->
+        <TextView
+            android:id="@+id/main_specific_sector_title"
+            style="@style/Field"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_compagny_input"
+            android:text="@string/main_specific_sector_title" />
+
+        <Spinner
+            android:id="@+id/main_specific_sector_input"
+            style="@style/Input"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_compagny_input"
+            android:entries="@array/sectors" />
+
+        <!--  Employee - Years of experience -->
+        <TextView
+            android:id="@+id/main_specific_experience_title"
+            style="@style/Field"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_sector_title"
+            android:text="@string/main_specific_experience_title" />
+
+        <EditText
+            android:id="@+id/main_specific_experience_input"
+            style="@style/Input"
+            android:hint="@string/main_specific_experience_title"
+            app:layout_constraintTop_toBottomOf="@id/main_specific_sector_title"
+            android:inputType="number"/>
 
     <!-- Complementary data -->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
