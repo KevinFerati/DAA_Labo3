@@ -53,12 +53,10 @@
                 app:layout_constraintTop_toBottomOf="@id/main_base_firstname_title" />
 
             <EditText
-                android:layout_width="0dp"
-                android:layout_height="@dimen/input_group_height"
+                style="@style/Input"
                 android:id="@+id/main_base_birthdate_input"
                 app:layout_constraintStart_toEndOf="@id/field_guideline"
                 app:layout_constraintEnd_toEndOf="@id/main_base_birthdate_icon"
-                android:inputType="date"
                 app:layout_constraintTop_toBottomOf="@id/main_base_firstname_title" />
 
             <ImageButton
@@ -99,6 +97,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_base_occupation_title">
                 <RadioButton
+                    android:id="@+id/main_base_occupation_student"
                     android:text="@string/main_base_occupation_student"
 
                     android:layout_width="wrap_content"
@@ -107,6 +106,7 @@
                 </RadioButton>
 
                 <RadioButton
+                    android:id="@+id/main_base_occupation_worker"
                     android:text="@string/main_base_occupation_worker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,6 +118,7 @@
 
     <!--region Students  -->
     <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_specific_student_grouping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -160,8 +161,10 @@
 
     <!--region Employee -->
     <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_specific_employee_grouping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="main_specific_workers_title"
         />
 
