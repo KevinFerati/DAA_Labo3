@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initEvents() {
-        binding.mainBaseOccupationGroup.setOnCheckedChangeListener { _, _ ->
-            if (studentSelected()) {
+        binding.mainBaseOccupationGroup.setOnCheckedChangeListener { _, checkId ->
+            if (studentSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.VISIBLE
                 binding.mainSpecificEmployeeGrouping.visibility = View.GONE
-            } else if(employeeSelected()) {
+            } else if(employeeSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.GONE
                 binding.mainSpecificEmployeeGrouping.visibility = View.VISIBLE
             }
@@ -58,12 +58,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun studentSelected(): Boolean {
-        return binding.mainBaseOccupationGroup.checkedRadioButtonId == R.id.main_base_occupation_student
+    private fun studentSelected(checkId: Int): Boolean {
+        return checkId == R.id.main_base_occupation_student
     }
 
-    private fun employeeSelected(): Boolean {
-        return binding.mainBaseOccupationGroup.checkedRadioButtonId == R.id.main_specific_employee_grouping
+    private fun employeeSelected(checkId: Int): Boolean {
+        return checkId == R.id.main_specific_employee_grouping
     }
 
 

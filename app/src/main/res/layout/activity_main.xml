@@ -165,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="main_specific_workers_title"
+        app:constraint_referenced_ids="main_specific_workers_title,main_specific_compagny_title,main_specific_compagny_input,main_specific_sector_title,main_specific_sector_input,main_specific_experience_title,main_specific_experience_input"
         />
 
         <TextView
@@ -224,7 +224,7 @@
             android:layout_height="wrap_content"
             app:barrierAllowsGoneWidgets="true"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="main_specific_experience_title,main_specific_graduationyear_title" />
+            app:constraint_referenced_ids="main_specific_experience_title,main_specific_graduationyear_title,main_title" />
         <TextView
             style="@style/Field"
             android:id="@+id/additional_title"
