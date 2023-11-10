@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.mainBaseBirthdateInput.setOnClickListener {
+            showDatePickerDialog()
+        }
 
         binding.mainBaseBirthdateIcon.setOnClickListener {
 
@@ -53,10 +56,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun saveUser() {
         TODO("Not yet implemented")
     }
 
+    private fun showDatePickerDialog() {
+        val calendarView = CalendarView(this)
+        val currentDate = Calendar.getInstance()
+        calendarView.date = currentDate.timeInMillis
+
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(calendarView)
+            .setPositiveButton("OK") { dialog, _ ->
+                val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    .format(Date(calendarView.date))
+                // Mettez à jour votre EditText avec la date sélectionnée
+                val birthdateInput = findViewById<EditText>(R.id.main_base_birthdate_input)
+                birthdateInput.setText(selectedDate)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Annuler") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+    }
 
     private fun studentSelected(checkId: Int): Boolean {
         return checkId == R.id.main_base_occupation_student
