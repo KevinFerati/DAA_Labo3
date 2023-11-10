@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun employeeSelected(checkId: Int): Boolean {
-        return checkId == R.id.main_specific_employee_grouping
+        return checkId == R.id.main_base_occupation_worker
     }
 
 
