@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 
 
+// Taken and adapted from https://stackoverflow.com/a/48703213
 class DefaultValueArrayAdapter(ctx: Context,
                                   private val layout: Int,
                                   private val defaultValue: String,
