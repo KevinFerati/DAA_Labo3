@@ -24,15 +24,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initSpinnersWithDefaultValues() {
-        binding.mainSpecificSectorInput.adapter = DefaultValueArrayAdapter(
+        binding.mainSpecificSectorInput.adapter = HintAdapter(
             this,
-            android.R.layout.simple_list_item_1,
             getString(R.string.sectors_empty),
             resources.getStringArray(R.array.sectors))
 
-        binding.mainBaseNationalityInput.adapter = DefaultValueArrayAdapter(
+        binding.mainBaseNationalityInput.adapter = HintAdapter(
             this,
-            android.R.layout.simple_list_item_1,
             getString(R.string.nationality_empty),
             resources.getStringArray(R.array.nationalities))
     }
@@ -54,8 +52,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnOk.setOnClickListener {
-            val d = binding.mainBaseNationalityInput.selectedItem as String;
-            Log.d("test", d)
+            val d = binding.mainBaseNationalityInput.selectedItem as String?;
+            Log.d("test", "$d")
 
         }
 
