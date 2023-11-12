@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Mock a user save : check inputs, create a new object and log it
+     */
     private fun saveUser() {
         if(!binding.mainBaseOccupationStudent.isChecked && !binding.mainBaseOccupationWorker.isChecked){
             showMessageDialog(this, "Séléctionner d'abord le type de personne")
@@ -160,6 +163,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Display the date picker dialog
+     */
     private fun showDatePickerDialog() {
         val calendarView = CalendarView(this)
         val currentDate = Calendar.getInstance()
@@ -183,14 +189,23 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    /**
+     * Check if the student option is selected
+     */
     private fun studentSelected(checkId: Int): Boolean {
         return checkId == R.id.main_base_occupation_student
     }
 
+    /**
+     * Check if the employee option is selected
+     */
     private fun employeeSelected(checkId: Int): Boolean {
         return checkId == R.id.main_base_occupation_worker
     }
 
+    /**
+     * Show a messagebox to the user
+     */
     private fun showMessageDialog(context: Context, message: String) {
         val builder = AlertDialog.Builder(context)
         builder.setMessage(message)
@@ -201,6 +216,9 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    /**
+     * Check if an email is valid, using regex
+     */
     fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
         return emailRegex.matches(email)
