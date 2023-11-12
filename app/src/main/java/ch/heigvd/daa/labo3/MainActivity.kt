@@ -1,10 +1,9 @@
 package ch.heigvd.daa.labo3
 
-import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.DatePicker
 import android.widget.EditText
 import androidx.core.view.children
 import ch.heigvd.daa.labo3.databinding.ActivityMainBinding
@@ -19,9 +18,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+        initSpinnersWithDefaultValues();
         initEvents()
 
+    }
+
+    private fun initSpinnersWithDefaultValues() {
+        binding.mainSpecificSectorInput.adapter = DefaultValueArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            getString(R.string.sectors_empty),
+            resources.getStringArray(R.array.sectors))
+
+        binding.mainBaseNationalityInput.adapter = DefaultValueArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            getString(R.string.nationality_empty),
+            resources.getStringArray(R.array.nationalities))
     }
 
     private fun initEvents() {
@@ -41,7 +54,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnOk.setOnClickListener {
-            saveUser()
+            val d = binding.mainBaseNationalityInput.selectedItem as String;
+            Log.d("test", d)
+
         }
 
         binding.btnCancel.setOnClickListener {
@@ -50,6 +65,10 @@ class MainActivity : AppCompatActivity() {
                     view.text.clear()
                 }
             }
+
+
+            binding.mainBaseOccupationGroup.clearCheck()
+
         }
     }
 
