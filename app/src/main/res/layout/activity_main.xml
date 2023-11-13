@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tool+s"
-    xmlns:tools2="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
 
     <!-- Title and field separation guideline -->
     <androidx.constraintlayout.widget.Guideline
@@ -29,14 +31,13 @@
         android:text="@string/main_base_name_title"
         app:layout_constraintTop_toBottomOf="@id/main_title" />
 
-    <!-- First name -->
     <EditText
         android:id="@+id/main_base_name"
         style="@style/TextInput"
         android:hint="@string/main_base_name_title"
-        app:layout_constraintTop_toBottomOf="@id/main_title"
-        tools2:layout_editor_absoluteX="180dp" />
+        app:layout_constraintTop_toBottomOf="@id/main_title" />
 
+    <!-- First name -->
     <TextView
         android:id="@+id/main_base_firstname_title"
         style="@style/Field"
@@ -47,8 +48,7 @@
         android:id="@+id/main_base_firstname"
         style="@style/TextInput"
         android:hint="@string/main_base_firstname_title"
-        app:layout_constraintTop_toBottomOf="@id/main_base_name_title"
-        tools2:layout_editor_absoluteX="180dp" />
+        app:layout_constraintTop_toBottomOf="@id/main_base_name_title" />
 
     <!-- Birthday -->
     <TextView
@@ -89,8 +89,7 @@
         android:id="@+id/main_base_nationality"
         style="@style/Input"
         android:entries="@array/nationalities"
-        app:layout_constraintTop_toBottomOf="@id/main_base_birthdate_title"
-        tools2:layout_editor_absoluteX="180dp" />
+        app:layout_constraintTop_toBottomOf="@id/main_base_birthdate_title" />
 
     <!-- Occupation -->
 
@@ -196,6 +195,7 @@
         android:id="@+id/main_specific_compagny_input"
         style="@style/TextInput"
         android:hint="@string/main_specific_compagny_title"
+        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/main_specific_workers_title" />
 
     <!--  Employee - Sector -->

@@ -23,11 +23,11 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
     private var currentUser: Person? = null
-    private const var DATE_FORMAT = "dd/MM/yyyy"
-    private const val MIN_GRADUATION_YEAR = 1900
-    private const val MAX_GRADUATION_YEAR = 2023
-    private const val MIN_EXPERIENCE = 0
-    private const val MAX_EXPERIENCE = 100
+    private val DATE_FORMAT = "dd/MM/yyyy"
+    private val MIN_GRADUATION_YEAR = 1900
+    private val MAX_GRADUATION_YEAR = 2023
+    private val MIN_EXPERIENCE = 0
+    private val MAX_EXPERIENCE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
