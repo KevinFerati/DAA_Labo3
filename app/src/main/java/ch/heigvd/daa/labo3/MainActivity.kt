@@ -23,6 +23,11 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
     private var currentUser: Person? = null
+    private const var DATE_FORMAT = "dd/MM/yyyy"
+    private const val MIN_GRADUATION_YEAR = 1900
+    private const val MAX_GRADUATION_YEAR = 2023
+    private const val MIN_EXPERIENCE = 0
+    private const val MAX_EXPERIENCE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             if (studentSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.VISIBLE
                 binding.mainSpecificEmployeeGrouping.visibility = View.GONE
-            } else if(employeeSelected(checkId)) {
+            } else if (employeeSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.GONE
                 binding.mainSpecificEmployeeGrouping.visibility = View.VISIBLE
             }
@@ -71,91 +76,107 @@ class MainActivity : AppCompatActivity() {
      * Mock a user save : check inputs, create a new object and log it
      */
     private fun saveUser() {
-        if(!binding.mainBaseOccupationStudent.isChecked && !binding.mainBaseOccupationWorker.isChecked){
-            showMessageDialog(this, "Séléctionner d'abord le type de personne")
+        if (!binding.mainBaseOccupationStudent.isChecked && !binding.mainBaseOccupationWorker.isChecked) {
+            showMessageDialog("Séléctionner d'abord le type de personne")
             return
         }
 
-        var name : String = binding.mainBaseName.text.toString()
-        if(name == ""){
-            showMessageDialog(this, "Saisir un nom")
+        var name: String = binding.mainBaseName.text.toString()
+        if (name == "") {
+            showMessageDialog("Saisir un nom")
             return
         }
-        var firstname : String = binding.mainBaseFirstname.text.toString();
-        if(firstname == ""){
-            showMessageDialog(this, "Saisir un prénom")
+        var firstname: String = binding.mainBaseFirstname.text.toString();
+        if (firstname == "") {
+            showMessageDialog("Saisir un prénom")
             return
         }
 
         var birthday_text = binding.mainBaseBirthdateInput.text.toString()
-        if(birthday_text == ""){
-            showMessageDialog(this, "Séléctionner une date de naissance")
+        if (birthday_text == "") {
+            showMessageDialog("Séléctionner une date de naissance")
             return
         }
-        var birthday : Calendar = Calendar.getInstance();
-        birthday.time = SimpleDateFormat("dd/MM/yyyy").parse(binding.mainBaseBirthdateInput.text.toString())
+        var birthday: Calendar = Calendar.getInstance();
+        birthday.time =
+            SimpleDateFormat(DATE_FORMAT).parse(binding.mainBaseBirthdateInput.text.toString())
 
-        var nationality : String = binding.mainBaseNationality.selectedItem.toString();
+        var nationality: String = binding.mainBaseNationality.selectedItem.toString();
 
-        var email : String = binding.additionalEmailInput.text.toString();
-        if(email == ""){
-            showMessageDialog(this, "Saisir un email")
+        var email: String = binding.additionalEmailInput.text.toString();
+        if (email == "") {
+            showMessageDialog("Saisir un email")
             return
         }
-        if(!isValidEmail(email)){
-            showMessageDialog(this, "Mauvais format d'email")
+        if (!isValidEmail(email)) {
+            showMessageDialog("Mauvais format d'email")
             return
         }
 
-        var remark : String = binding.additionalEmailInput.text.toString();
+        var remark: String = binding.additionalEmailInput.text.toString();
 
-        var person: Person
-
-        if(binding.mainBaseOccupationStudent.isChecked){
+        var person: Person = if (binding.mainBaseOccupationStudent.isChecked) {
             var school: String = binding.mainSpecificSchoolInput.text.toString()
-            if(school == ""){
-                showMessageDialog(this, "Séléctionner une école")
+            if (school == "") {
+                showMessageDialog("Séléctionner une école")
                 return
             }
             var graduationYear: Int
             try {
                 graduationYear = binding.mainSpecificGraduationyearInput.text.toString().toInt()
-                if(graduationYear<1900 || graduationYear > 2023){
-                    showMessageDialog(this, "La date de graduation doit être comprise entre 1900 et 2023")
+                if (graduationYear < MIN_GRADUATION_YEAR || graduationYear > MAX_GRADUATION_YEAR) {
+                    showMessageDialog("La date de graduation doit être comprise entre $MIN_GRADUATION_YEAR et $MAX_GRADUATION_YEAR")
                     return
                 }
-            }catch(e: Exception){
-                showMessageDialog(this, "Mauvais format d'année")
+            } catch (e: Exception) {
+                showMessageDialog("Mauvais format d'année")
                 return
             }
 
-            person = Student(name, firstname, birthday, nationality, school, graduationYear, email, remark)
+            Student(
+                name,
+                firstname,
+                birthday,
+                nationality,
+                school,
+                graduationYear,
+                email,
+                remark
+            )
 
 
-        }
-        else{
-            var company:String = binding.mainSpecificCompagnyInput.text.toString();
-            if(company == ""){
-                showMessageDialog(this, "Saisir une entreprise")
+        } else {
+            var company: String = binding.mainSpecificCompagnyInput.text.toString();
+            if (company == "") {
+                showMessageDialog("Saisir une entreprise")
                 return
             }
 
             var sector = binding.mainSpecificSectorInput.selectedItem.toString();
 
-            var experience : Int
+            var experience: Int
             try {
                 experience = binding.mainSpecificExperienceInput.text.toString().toInt()
-                if(experience<0 || experience > 100){
-                    showMessageDialog(this, "Le nombre d'années d'expériences doit être compris entre 0 et 100")
+                if (experience < MIN_EXPERIENCE || experience > MAX_EXPERIENCE) {
+                    showMessageDialog("Le nombre d'années d'expériences doit être compris entre $MIN_EXPERIENCE et $MAX_EXPERIENCE")
                     return
                 }
-            }
-            catch(e: Exception){
-                showMessageDialog(this, "Mauvais format d'année d'expérience")
+            } catch (e: Exception) {
+                showMessageDialog("Mauvais format d'année d'expérience")
                 return
             }
 
-            person = Worker(name, firstname, birthday, nationality, company, sector, experience, email, remark)
+            Worker(
+                name,
+                firstname,
+                birthday,
+                nationality,
+                company,
+                sector,
+                experience,
+                email,
+                remark
+            )
 
         }
 
@@ -174,7 +195,7 @@ class MainActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
             .setView(calendarView)
             .setPositiveButton("OK") { dialog, _ ->
-                var selectedDate : CharSequence = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                var selectedDate: CharSequence = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
                     .format(Date(calendarView.date))
                 // Mettez à jour votre EditText avec la date sélectionnée
                 val birthdateInput = findViewById<EditText>(R.id.main_base_birthdate_input)
@@ -206,8 +227,8 @@ class MainActivity : AppCompatActivity() {
     /**
      * Show a messagebox to the user
      */
-    private fun showMessageDialog(context: Context, message: String) {
-        val builder = AlertDialog.Builder(context)
+    private fun showMessageDialog(message: String) {
+        val builder = AlertDialog.Builder(this)
         builder.setMessage(message)
         builder.setPositiveButton("OK") { _, _ ->
             // Action à effectuer lorsque l'utilisateur appuie sur le bouton "OK"
