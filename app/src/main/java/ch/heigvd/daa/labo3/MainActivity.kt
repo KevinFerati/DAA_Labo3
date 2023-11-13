@@ -14,21 +14,20 @@ import ch.heigvd.iict.and.labo2.Person
 import ch.heigvd.iict.and.labo2.Student
 import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
+const val DATE_FORMAT = "dd/MM/yyyy"
+const val MIN_GRADUATION_YEAR = 1900
+const val MAX_GRADUATION_YEAR = 2024
+const val MIN_EXPERIENCE = 0
+const val MAX_EXPERIENCE = 100
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
     private var currentUser: Person? = null
-
-    // TODO Constante jsp comment en kotlin
-    private val DATE_FORMAT = "dd/MM/yyyy"
-    private val MIN_GRADUATION_YEAR = 1900
-    private val MAX_GRADUATION_YEAR = 2023
-    private val MIN_EXPERIENCE = 0
-    private val MAX_EXPERIENCE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,24 +82,24 @@ class MainActivity : AppCompatActivity() {
      */
     private fun saveUser() {
         if (!binding.mainBaseOccupationStudent.isChecked && !binding.mainBaseOccupationWorker.isChecked) {
-            showMessageDialog("Séléctionner d'abord le type de personne")
+            showMessageDialog(resources.getString(R.string.error_select_person_type))
             return
         }
 
         var name: String = binding.mainBaseName.text.toString()
         if (name == "") {
-            showMessageDialog("Saisir un nom")
+            showMessageDialog(resources.getString(R.string.error_empty_fields))
             return
         }
         var firstname: String = binding.mainBaseFirstname.text.toString();
         if (firstname == "") {
-            showMessageDialog("Saisir un prénom")
+            showMessageDialog(resources.getString(R.string.error_empty_fields))
             return
         }
 
         var birthday_text = binding.mainBaseBirthdateInput.text.toString()
         if (birthday_text == "") {
-            showMessageDialog("Séléctionner une date de naissance")
+            showMessageDialog(resources.getString(R.string.error_invalid_birthdate))
             return
         }
         var birthday: Calendar = Calendar.getInstance();
@@ -111,11 +110,11 @@ class MainActivity : AppCompatActivity() {
 
         var email: String = binding.additionalEmailInput.text.toString();
         if (email == "") {
-            showMessageDialog("Saisir un email")
+            showMessageDialog(resources.getString(R.string.error_select_email))
             return
         }
         if (!isValidEmail(email)) {
-            showMessageDialog("Mauvais format d'email")
+            showMessageDialog(resources.getString(R.string.error_invalid_email))
             return
         }
 
@@ -124,18 +123,18 @@ class MainActivity : AppCompatActivity() {
         var person: Person = if (binding.mainBaseOccupationStudent.isChecked) {
             var university: String = binding.mainSpecificUniversityInput.text.toString()
             if (university == "") {
-                showMessageDialog("Séléctionner une école")
+                showMessageDialog(resources.getString(R.string.error_select_university))
                 return
             }
             var graduationYear: Int
             try {
                 graduationYear = binding.mainSpecificGraduationyearInput.text.toString().toInt()
                 if (graduationYear < MIN_GRADUATION_YEAR || graduationYear > MAX_GRADUATION_YEAR) {
-                    showMessageDialog("La date de graduation doit être comprise entre $MIN_GRADUATION_YEAR et $MAX_GRADUATION_YEAR")
+                    showMessageDialog(resources.getString(R.string.error_invalid_graduation_year, MIN_GRADUATION_YEAR, MAX_GRADUATION_YEAR))
                     return
                 }
             } catch (e: Exception) {
-                showMessageDialog("Mauvais format d'année")
+                showMessageDialog(resources.getString(R.string.error_invalid_graduation_year))
                 return
             }
 
@@ -154,7 +153,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             var company: String = binding.mainSpecificCompagnyInput.text.toString();
             if (company == "") {
-                showMessageDialog("Saisir une entreprise")
+                showMessageDialog(resources.getString(R.string.error_select_company))
                 return
             }
 
@@ -164,11 +163,11 @@ class MainActivity : AppCompatActivity() {
             try {
                 experience = binding.mainSpecificExperienceInput.text.toString().toInt()
                 if (experience < MIN_EXPERIENCE || experience > MAX_EXPERIENCE) {
-                    showMessageDialog("Le nombre d'années d'expériences doit être compris entre $MIN_EXPERIENCE et $MAX_EXPERIENCE")
+                    showMessageDialog(resources.getString(R.string.error_invalid_experience, MIN_EXPERIENCE, MAX_EXPERIENCE))
                     return
                 }
             } catch (e: Exception) {
-                showMessageDialog("Mauvais format d'année d'expérience")
+                showMessageDialog(resources.getString(R.string.error_invalid_experience, MIN_EXPERIENCE, MAX_EXPERIENCE))
                 return
             }
 
