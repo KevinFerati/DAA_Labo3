@@ -23,4 +23,5 @@ Nous avons ajouté android:inputType="textMultiLine". Ceci va permettre à notre
 
 ### 4.5 Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que le premier choix corresponde au choix null, affichant par exemple « Sélectionner » ? Comment peut-on gérer cette valeur pour ne pas qu’elle soit confondue avec une réponse ?
 
+Nous avons créé un Adapter custom pour la liste d'options du Spinner. Cet adapter intègre un élément à l'index 0. L'Adapter custom indique toujours que l'option est désactivé, et il ne l'affiche dans la vue "dropdown" des items. Il n'est donc pas possible de la séléctionner.
 
