@@ -28,7 +28,6 @@ const val MAX_EXPERIENCE = 100
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
-    private var currentUser: Person? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +36,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         initEvents()
-
     }
 
+    /**
+     * Init Activty events
+     */
     private fun initEvents() {
         binding.mainBaseOccupationGroup.setOnCheckedChangeListener { _, checkId ->
             if (studentSelected(checkId)) {
@@ -187,8 +188,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Fill the form with a Person object
+     */
     private fun fillFormWithPerson(person: Person) {
-        // Assuming binding is a property of your class
         binding.mainBaseName.setText(person.name)
         binding.mainBaseFirstname.setText(person.firstName)
 
@@ -198,12 +201,10 @@ class MainActivity : AppCompatActivity() {
         binding.additionalRemarksInput.setText(person.remark)
         binding.mainBaseNationality.setSelection(getIndex(binding.mainBaseNationality, person.nationality))
         if (person is Student) {
-            // Handle Student specific properties
             binding.mainBaseOccupationStudent.isChecked = true
             binding.mainSpecificUniversityInput.setText(person.university)
             binding.mainSpecificGraduationyearInput.setText(person.graduationYear.toString())
         } else if (person is Worker) {
-            // Handle Worker specific properties
             binding.mainBaseOccupationWorker.isChecked = true
             binding.mainSpecificCompagnyInput.setText(person.company)
             binding.mainSpecificSectorInput.setSelection(getIndex(binding.mainSpecificSectorInput, person.sector))
@@ -211,7 +212,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Utility function to get the index of an item in a Spinner
+    /**
+     * Utility function to get the index of an item in a Spinner
+     */
     private fun getIndex(spinner: Spinner, value: String): Int {
         for (i in 0 until spinner.count) {
             if (spinner.getItemAtPosition(i).toString() == value) {
@@ -278,7 +281,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Check if an email is valid, using regex
      */
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
         return emailRegex.matches(email)
     }
