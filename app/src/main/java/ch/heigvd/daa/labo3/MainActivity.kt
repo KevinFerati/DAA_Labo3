@@ -36,7 +36,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         initEvents()
+
+        binding.mainBaseNationality.adapter = DefaultValueSpinnerAdapter(this, android.R.layout.simple_spinner_dropdown_item, resources.getString(R.string.nationality_empty), resources.getStringArray(R.array.nationalities))
+        binding.mainSpecificSectorInput.adapter = DefaultValueSpinnerAdapter(this, android.R.layout.simple_spinner_dropdown_item, resources.getString(R.string.sectors_empty), resources.getStringArray(R.array.sectors))
+
+        fillFormWithPerson(exampleStudent)
     }
+
+
+
 
     /**
      * Init Activty events
@@ -71,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        fillFormWithPerson(exampleStudent)
     }
 
 
