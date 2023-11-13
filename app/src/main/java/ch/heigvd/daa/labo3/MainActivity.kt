@@ -11,6 +11,7 @@ import android.widget.Spinner
 import androidx.core.view.children
 import ch.heigvd.daa.labo3.databinding.ActivityMainBinding
 import ch.heigvd.iict.and.labo2.Person
+import ch.heigvd.iict.and.labo2.Person.Companion.exampleStudent
 import ch.heigvd.iict.and.labo2.Student
 import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
@@ -69,10 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        var birthday: Calendar = Calendar.getInstance();
-        birthday.time =
-            SimpleDateFormat(DATE_FORMAT).parse("09/06/2000")
-        fillFormWithPerson(Student("Romano", "Malo", birthday, "Italienne", "HEIG-VD", 2024, "malo.romano@hes-so.ch", "Vive Staline"))
+        fillFormWithPerson(exampleStudent)
     }
 
 
