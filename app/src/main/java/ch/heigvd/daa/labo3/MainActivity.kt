@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainBaseBirthdateInput.setText(dateFormat.format(person.birthDay.time))
         binding.additionalEmailInput.setText(person.email)
         binding.additionalRemarksInput.setText(person.remark)
-
+        binding.mainBaseNationality.setSelection(getIndex(binding.mainBaseNationality, person.nationality))
         if (person is Student) {
             // Handle Student specific properties
             binding.mainBaseOccupationStudent.isChecked = true
