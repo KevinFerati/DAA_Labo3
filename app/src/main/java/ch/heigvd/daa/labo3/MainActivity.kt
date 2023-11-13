@@ -23,6 +23,8 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
     private var currentUser: Person? = null
+
+    // TODO Constante jsp comment en kotlin
     private val DATE_FORMAT = "dd/MM/yyyy"
     private val MIN_GRADUATION_YEAR = 1900
     private val MAX_GRADUATION_YEAR = 2023
