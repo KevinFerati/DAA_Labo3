@@ -132,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="main_specific_graduationyear_title,main_specific_graduationyear_input,main_specific_students_title,main_specific_school_title,main_specific_school_input" />
+        app:constraint_referenced_ids="main_specific_graduationyear_title,main_specific_graduationyear_input,main_specific_students_title,main_specific_school_title,main_specific_university_input" />
 
     <TextView
         android:id="@+id/main_specific_students_title"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@id/main_specific_students_title" />
 
     <EditText
-        android:id="@+id/main_specific_school_input"
+        android:id="@+id/main_specific_university_input"
         style="@style/TextInput"
         android:hint="@string/main_specific_school_title"
         app:layout_constraintTop_toBottomOf="@id/main_specific_students_title" />
@@ -159,14 +159,14 @@
         android:id="@+id/main_specific_graduationyear_title"
         style="@style/Field"
         android:text="@string/main_specific_graduationyear_title"
-        app:layout_constraintTop_toBottomOf="@id/main_specific_school_input" />
+        app:layout_constraintTop_toBottomOf="@id/main_specific_university_input" />
 
     <EditText
         android:id="@+id/main_specific_graduationyear_input"
         style="@style/Input"
         android:hint="@string/main_specific_graduationyear_title"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/main_specific_school_input" />
+        app:layout_constraintTop_toBottomOf="@id/main_specific_university_input" />
     <!--endregion-->
 
     <!--region Employee -->
@@ -195,7 +195,6 @@
         android:id="@+id/main_specific_compagny_input"
         style="@style/TextInput"
         android:hint="@string/main_specific_compagny_title"
-        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/main_specific_workers_title" />
 
     <!--  Employee - Sector -->

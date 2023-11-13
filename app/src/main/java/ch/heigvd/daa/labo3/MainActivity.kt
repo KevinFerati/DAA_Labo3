@@ -1,15 +1,13 @@
 package ch.heigvd.daa.labo3
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.CalendarView
-import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.core.view.children
 import ch.heigvd.daa.labo3.databinding.ActivityMainBinding
 import ch.heigvd.iict.and.labo2.Person
@@ -19,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding;
@@ -71,7 +70,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        var birthday: Calendar = Calendar.getInstance();
+        birthday.time =
+            SimpleDateFormat(DATE_FORMAT).parse("09/06/2000")
+        fillFormWithPerson(Student("Romano", "Malo", birthday, "Italienne", "HEIG-VD", 2024, "malo.romano@hes-so.ch", "Vive Staline"))
     }
+
 
 
     /**
@@ -118,8 +122,8 @@ class MainActivity : AppCompatActivity() {
         var remark: String = binding.additionalEmailInput.text.toString();
 
         var person: Person = if (binding.mainBaseOccupationStudent.isChecked) {
-            var school: String = binding.mainSpecificSchoolInput.text.toString()
-            if (school == "") {
+            var university: String = binding.mainSpecificUniversityInput.text.toString()
+            if (university == "") {
                 showMessageDialog("Séléctionner une école")
                 return
             }
@@ -140,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 firstname,
                 birthday,
                 nationality,
-                school,
+                university,
                 graduationYear,
                 email,
                 remark
@@ -185,6 +189,41 @@ class MainActivity : AppCompatActivity() {
         Log.i("New person created", person.toString())
 
     }
+
+    private fun fillFormWithPerson(person: Person) {
+        // Assuming binding is a property of your class
+        binding.mainBaseName.setText(person.name)
+        binding.mainBaseFirstname.setText(person.firstName)
+
+        val dateFormat = SimpleDateFormat(DATE_FORMAT)
+        binding.mainBaseBirthdateInput.setText(dateFormat.format(person.birthDay.time))
+        binding.additionalEmailInput.setText(person.email)
+        binding.additionalRemarksInput.setText(person.remark)
+
+        if (person is Student) {
+            // Handle Student specific properties
+            binding.mainBaseOccupationStudent.isChecked = true
+            binding.mainSpecificUniversityInput.setText(person.university)
+            binding.mainSpecificGraduationyearInput.setText(person.graduationYear.toString())
+        } else if (person is Worker) {
+            // Handle Worker specific properties
+            binding.mainBaseOccupationWorker.isChecked = true
+            binding.mainSpecificCompagnyInput.setText(person.company)
+            binding.mainSpecificSectorInput.setSelection(getIndex(binding.mainSpecificSectorInput, person.sector))
+            binding.mainSpecificExperienceInput.setText(person.experienceYear.toString())
+        }
+    }
+
+    // Utility function to get the index of an item in a Spinner
+    private fun getIndex(spinner: Spinner, value: String): Int {
+        for (i in 0 until spinner.count) {
+            if (spinner.getItemAtPosition(i).toString() == value) {
+                return i
+            }
+        }
+        return 0 // Default to the first item if not found
+    }
+
 
     /**
      * Display the date picker dialog
