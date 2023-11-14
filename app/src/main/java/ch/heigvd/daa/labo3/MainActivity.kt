@@ -1,5 +1,10 @@
 /**
  * Kevin Ferati, Malo Romano & Flavio Sovilla
+ *
+ * 14.11.2023
+ *
+ * Labo 3 - DAA
+ *
  * This class represents the main activity of the Android application.
  * It includes the implementation of a user interface for inputting and saving person details.
  */
