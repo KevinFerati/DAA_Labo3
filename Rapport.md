@@ -37,8 +37,20 @@ Oui, nous pouvons spécifier notre propre ordre de remplissage du questionnaire 
 
 Pour les deux Spinners (nationalité et secteur d’activité), nous avons mis en place une sélection nulle, affichant un message qui n'est pas séléctionnable pour l'utilisateur. Cela a été réalisé en créant un adaptateur personnalisé pour la liste d'options des Spinner, intégrant un élément à l'index 0. Et il est configuré comme désactivé, n'apparaissant ainsi pas dans la vue déroulante des options sélectionnables. Ceci nous garantit qu'il ne peut pas être choisi par l'utilisateur.
 
-## Explications implémentation
+## Détails d'implémentation
 
+### Utilisation du pattern MVC et explications des composants
+
+Le pattern a été utilisé de la sorte :
+- Le contrôleur a été représenté avec la classe `MainActivity`
+- Le modèle est la classe fournie `Person` ainsi que ses enfants
+- La vue correspondante est le fichier `activity_main.xml`
+
+Nous avons activé la "View Binding" pour faciliter les communications entre la vue et le contrôleur.
+
+La vue a été implémentée à l'aide d'un seul `ConstraintLayout` à l'intérieur d'un `ScrollView` pour permettre de scroller, notamment en orientation paysage ou lorsque le champ commentaire est grand. Pour gérer l'affichage par "colonne", nous utilisons un widget `Barrier`, dont un autre est également utilisé pour adapter l'espace verticale automatiquement. Nous gérons la visibilité des groupes spécifiques grâce au widget `Group`. Nous faisons également usage des styles pour factoriser le code.
+
+L'activité est moins intéressante à analyser. 
 ### Externalisation des chaînes de caractères
 
 Afin de séparer les chaînes de caractères affichées et l'implémentation, nous avons agrémenté le fichier strings.xml fourni pour ce laboratoire. Exemple d'une chaîne de caractère :
@@ -58,3 +70,5 @@ Les valeurs peuvent ensuite être remplacées comme ceci :
 ```kotlin
 resources.getString(R.string.error_invalid_experience, MIN_EXPERIENCE, MAX_EXPERIENCE)
 ```
+
+
