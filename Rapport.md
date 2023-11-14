@@ -52,7 +52,7 @@ Lorsqu'une chaîne devait contenir une ou plusieurs variables, nous avons utilis
 <string name="error_invalid_experience">Le nombre d\'années d\'expérience doit être entre %1$d et %2$d.</string>
 ```
 
-Les valeurs peuvent ensuite être remplacé comme ceci :
+Les valeurs peuvent ensuite être remplacées comme ceci :
 
 ```kotlin
 resources.getString(R.string.error_invalid_experience, MIN_EXPERIENCE, MAX_EXPERIENCE)
