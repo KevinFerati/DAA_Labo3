@@ -1,58 +1,50 @@
+/**
+ * Kevin Ferati, Malo Romano & Flavio Sovilla
+ *
+ * 14.11.2023
+ *
+ * Labo 3 - DAA
+ *
+ * This Kotlin class defines a custom ArrayAdapter for use with a Spinner widget.
+ * It allows the specification of a default value, ensuring it is not selectable or visible in the dropdown list.
+ */
+
 package ch.heigvd.daa.labo3
 
-import android.R
-import android.annotation.SuppressLint
+import android.widget.ArrayAdapter
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
 
-
-// https://stackoverflow.com/a/41637506
-class HintAdapter(context: Context, private val hint: String, private val elements: Array<String>) :
-    ArrayAdapter<String>(context, R.layout.simple_list_item_1, elements) {
-    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        return if (position == 0) {
-            initialSelection(true)
-        } else getCustomView(position, convertView, parent)
+class DefaultValueSpinnerAdapter<T>(
+    context: Context,
+    resource: Int,
+    defaultValue: T,
+    objects: Array<T>
+) : ArrayAdapter<T>(context, resource) {
+    /**
+     * Init the custom adapter with a default value
+     */
+    init {
+        add(defaultValue)
+        addAll(*objects)
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        return if (position == 0) {
-            initialSelection(false)
-        } else getCustomView(position, convertView, parent)
+    /**
+     * Return if an option is enabled
+     * Overload the standard ArrayAdapter isEnabled function, to return false is it's the first default option
+     */
+    override fun isEnabled(index: Int): Boolean {
+        return (index != 0) && super.isEnabled(index)
     }
 
-    override fun getCount(): Int {
-        return super.getCount() + 1 // Adjust for initial selection item
-    }
-
-    private fun initialSelection(dropdown: Boolean): View {
-        // Just an example using a simple TextView. Create whatever default view
-        // to suit your needs, inflating a separate layout if it's cleaner.
-        val view = TextView(context)
-        view.text = hint
-        if (dropdown) { // Hidden when the dropdown is opened
-            view.height = 0
-        }
-        return view
-    }
-
-    override fun getItem(position: Int): String? {
-        return if (position == 0) null else elements[position - 1]
-    }
-
-    private fun getCustomView(position: Int, convertView: View?, parent: ViewGroup): View {
-        // Distinguish "real" spinner items (that can be reused) from initial selection item
-        val view =
-            if (convertView != null && convertView !is TextView) convertView else LayoutInflater.from(
-                context
-            ).inflate(R.layout.simple_list_item_1, parent, false)
-
-        (view as TextView).text = elements[position - 1]
-
-        return view
+    /**
+     * Display an item, except if it is the first default option
+     */
+    override fun getDropDownView(index: Int, convertView: View?, parent: ViewGroup): View {
+        return if (index == 0)
+            View(context).apply { visibility = View.GONE }
+        else
+            super.getDropDownView(index, null, parent)
     }
 }

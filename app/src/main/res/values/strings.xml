@@ -12,7 +12,7 @@
     <string name="main_base_occupation_student">Etudiant</string>
     <string name="main_base_occupation_worker">Employé</string>
 
-    <string-array translatable="false" name="nationalities">
+    <string-array name="nationalities" translatable="false">
         <item>@string/ch</item>
         <item>@string/fr</item>
         <item>@string/de</item>
@@ -74,10 +74,28 @@
 
     <string name="additional_title">Données complémentaires</string>
     <string name="additional_email_title">Adresse e-mail</string>
-	
+
     <string name="additional_remarks_title">Commentaires</string>
 
     <string name="btn_cancel">@android:string/cancel</string>
     <string name="btn_ok">@android:string/ok</string>
+
+    <!-- Message utilisateur -->
+
+
+    <!-- Messages d'erreur -->
+    <string name="error_select_person_type">Veuillez sélectionner le type de personne.</string>
+    <string name="error_empty_fields">Veuillez remplir tous les champs obligatoires.</string>
+    <string name="error_invalid_birthdate">Format de date de naissance incorrect.</string>
+    <string name="error_select_university">Veuillez sélectionner une école/université.</string>
+    <string name="error_invalid_graduation_year">La date de graduation doit être entre %1$d et %2$d.</string>
+    <string name="error_select_company">Veuillez saisir le nom de l\'entreprise.</string>
+    <string name="error_select_sector">Veuillez sélectionner un secteur d\'activité.</string>
+    <string name="error_invalid_experience">Le nombre d\'années d\'expérience doit être entre %1$d et %2$d.</string>
+    <string name="error_select_email">Veuillez saisir une adresse e-mail.</string>
+    <string name="error_invalid_email">Adresse e-mail invalide.</string>
+    <string name="error_invalid_remarks">Commentaires non valides.</string>
+    <string name="error_invalid_occupation">Sélection d\'occupation non valide.</string>
+
 
 </resources>
