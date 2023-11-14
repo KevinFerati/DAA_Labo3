@@ -269,14 +269,12 @@ class MainActivity : AppCompatActivity() {
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
 
-                // Formatte la date en fonction de la langue et de la région
-                // grâce à Locale.getDefault()
+                // Format the date depending on the region
                 val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
                 val formattedDate = dateFormat.format(selectedDate.time)
 
-                // Met à jour EditText avec la date sélectionnée
-                val birthdateInput = findViewById<EditText>(R.id.main_base_birthdate_input)
-                birthdateInput.setText(formattedDate)
+                // Update the input with the date
+                binding.mainBaseBirthdateInput.setText(formattedDate)
             },
             currentDate.get(Calendar.YEAR),
             currentDate.get(Calendar.MONTH),
@@ -310,9 +308,7 @@ class MainActivity : AppCompatActivity() {
     private fun showMessageDialog(message: String) {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(message)
-        builder.setPositiveButton("OK") { _, _ ->
-            // Action à effectuer lorsque l'utilisateur appuie sur le bouton "OK"
-        }
+        builder.setPositiveButton("OK") { _, _ ->}
         val dialog = builder.create()
         dialog.show()
     }
