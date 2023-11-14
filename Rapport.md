@@ -31,8 +31,8 @@ _Lors du remplissage des champs textuels, vous pouvez constater que le bouton «
 Oui, nous pouvons spécifier notre propre ordre de remplissage du questionnaire grâce aux attributs 'android:nextFocusDown="@+id/monProchainRemplissage"'. Lorsqu'on atteint le dernier champ, il est possible d'ajouter un gestionnaire d'événements 'setOnEditorActionListener'. Cela va nous permettre de lier le bouton «OK» à l'action 'suivant' afin de déclencher la validation du questionnaire.
 
 
-### 
-_5. Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que le premier choix corresponde au choix null, affichant par exemple « Sélectionner » ? Comment peut-on gérer cette valeur pour ne pas qu’elle soit confondue avec une réponse ?_
+### 5. 
+_Pour les deux Spinners (nationalité et secteur d’activité), comment peut-on faire en sorte que le premier choix corresponde au choix null, affichant par exemple « Sélectionner » ? Comment peut-on gérer cette valeur pour ne pas qu’elle soit confondue avec une réponse ?_
 
 Pour les deux Spinners (nationalité et secteur d’activité), nous avons mis en place une sélection nulle, affichant un message qui n'est pas séléctionnable pour l'utilisateur. Cela a été réalisé en créant un adaptateur personnalisé pour la liste d'options des Spinner, intégrant un élément à l'index 0. Et il est configuré comme désactivé, n'apparaissant ainsi pas dans la vue déroulante des options sélectionnables. Ceci nous garantit qu'il ne peut pas être choisi par l'utilisateur.
 
