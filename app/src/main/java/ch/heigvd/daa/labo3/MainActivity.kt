@@ -29,6 +29,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+/**
+ * Constants
+ */
 const val DATE_FORMAT = "dd/MM/yyyy"
 const val MIN_GRADUATION_YEAR = 1900
 const val MAX_GRADUATION_YEAR = 2024
@@ -38,6 +41,9 @@ const val MAX_EXPERIENCE = 100
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    /**
+     * When the activity is created
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -69,18 +75,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        /**
+         * Date picker button click event binding
+         */
         binding.mainBaseBirthdateInput.setOnClickListener {
             showDatePickerDialog()
         }
 
-        binding.mainBaseBirthdateIcon.setOnClickListener {
-
-        }
-
+        /**
+         * Save button click event binding
+         */
         binding.btnOk.setOnClickListener {
             saveUser()
         }
 
+        /**
+         * Cancel button click event binding
+         */
         binding.btnCancel.setOnClickListener {
             for (view in binding.mainLayout.children) {
                 if (view is EditText) {
