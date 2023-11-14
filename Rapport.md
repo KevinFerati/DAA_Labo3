@@ -50,7 +50,7 @@ Nous avons activé la "View Binding" pour faciliter les communications entre la 
 
 La vue a été implémentée à l'aide d'un seul `ConstraintLayout` à l'intérieur d'un `ScrollView` pour permettre de scroller, notamment en orientation paysage ou lorsque le champ commentaire est grand. Pour gérer l'affichage par "colonne", nous utilisons un widget `Barrier`, dont un autre est également utilisé pour adapter l'espace verticale automatiquement. Nous gérons la visibilité des groupes spécifiques grâce au widget `Group`. Nous faisons également usage des styles pour factoriser le code.
 
-L'activité est moins intéressante à analyser. 
+L'activité est moins intéressante à analyser. Nous avons simplement l'initialisation des events : clique sur les boutons *save*, *cancel* et d'ouverture du dialogue.
 ### Externalisation des chaînes de caractères
 
 Afin de séparer les chaînes de caractères affichées et l'implémentation, nous avons agrémenté le fichier strings.xml fourni pour ce laboratoire. Exemple d'une chaîne de caractère :
