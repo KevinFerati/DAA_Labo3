@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                     view.setSelection(0)
                 }
             }
+            binding.mainBaseOccupationStudent.isChecked = true
         }
     }
 
