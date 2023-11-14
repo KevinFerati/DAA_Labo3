@@ -69,10 +69,10 @@ class MainActivity : AppCompatActivity() {
         binding.mainBaseOccupationGroup.setOnCheckedChangeListener { _, checkId ->
             if (studentSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.VISIBLE
-                binding.mainSpecificEmployeeGrouping.visibility = View.GONE
+                binding.mainSpecificWorkerGrouping.visibility = View.GONE
             } else if (employeeSelected(checkId)) {
                 binding.mainSpecificStudentGrouping.visibility = View.GONE
-                binding.mainSpecificEmployeeGrouping.visibility = View.VISIBLE
+                binding.mainSpecificWorkerGrouping.visibility = View.VISIBLE
             }
         }
 
@@ -102,7 +102,10 @@ class MainActivity : AppCompatActivity() {
                     view.setSelection(0)
                 }
             }
-            binding.mainBaseOccupationStudent.isChecked = true
+            binding.mainBaseOccupationStudent.isChecked = false
+            binding.mainSpecificStudentGrouping.visibility = View.GONE
+            binding.mainBaseOccupationWorker.isChecked = false
+            binding.mainSpecificWorkerGrouping.visibility = View.GONE
         }
     }
 
