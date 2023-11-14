@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * When the activity is created
+     * Initialize events, binds the view, spinners and fill the form with a default person
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
