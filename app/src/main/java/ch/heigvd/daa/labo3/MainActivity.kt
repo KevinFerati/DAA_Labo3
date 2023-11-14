@@ -17,9 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.CalendarView
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.Spinner
 import androidx.core.view.children
 import ch.heigvd.daa.labo3.databinding.ActivityMainBinding
@@ -28,9 +26,7 @@ import ch.heigvd.iict.and.labo2.Person.Companion.exampleStudent
 import ch.heigvd.iict.and.labo2.Student
 import ch.heigvd.iict.and.labo2.Worker
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 const val DATE_FORMAT = "dd/MM/yyyy"
@@ -40,7 +36,7 @@ const val MIN_EXPERIENCE = 0
 const val MAX_EXPERIENCE = 100
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding;
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,29 +104,29 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        var name: String = binding.mainBaseName.text.toString()
+        val name: String = binding.mainBaseName.text.toString()
         if (name == "") {
             showMessageDialog(resources.getString(R.string.error_empty_fields))
             return
         }
-        var firstname: String = binding.mainBaseFirstname.text.toString();
+        val firstname: String = binding.mainBaseFirstname.text.toString()
         if (firstname == "") {
             showMessageDialog(resources.getString(R.string.error_empty_fields))
             return
         }
 
-        var birthday_text = binding.mainBaseBirthdateInput.text.toString()
-        if (birthday_text == "") {
+        val birthdayText = binding.mainBaseBirthdateInput.text.toString()
+        if (birthdayText == "") {
             showMessageDialog(resources.getString(R.string.error_invalid_birthdate))
             return
         }
-        var birthday: Calendar = Calendar.getInstance();
+        val birthday: Calendar = Calendar.getInstance()
         birthday.time =
-            SimpleDateFormat(DATE_FORMAT).parse(binding.mainBaseBirthdateInput.text.toString())
+            SimpleDateFormat(DATE_FORMAT).parse(binding.mainBaseBirthdateInput.text.toString())!!
 
-        var nationality: String = binding.mainBaseNationality.selectedItem.toString();
+        val nationality: String = binding.mainBaseNationality.selectedItem.toString()
 
-        var email: String = binding.additionalEmailInput.text.toString();
+        val email: String = binding.additionalEmailInput.text.toString()
         if (email == "") {
             showMessageDialog(resources.getString(R.string.error_select_email))
             return
@@ -140,15 +136,15 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        var remark: String = binding.additionalEmailInput.text.toString();
+        val remark: String = binding.additionalEmailInput.text.toString()
 
-        var person: Person = if (binding.mainBaseOccupationStudent.isChecked) {
-            var university: String = binding.mainSpecificUniversityInput.text.toString()
+        val person: Person = if (binding.mainBaseOccupationStudent.isChecked) {
+            val university: String = binding.mainSpecificUniversityInput.text.toString()
             if (university == "") {
                 showMessageDialog(resources.getString(R.string.error_select_university))
                 return
             }
-            var graduationYear: Int
+            val graduationYear: Int
             try {
                 graduationYear = binding.mainSpecificGraduationyearInput.text.toString().toInt()
                 if (graduationYear < MIN_GRADUATION_YEAR || graduationYear > MAX_GRADUATION_YEAR) {
@@ -173,15 +169,15 @@ class MainActivity : AppCompatActivity() {
 
 
         } else {
-            var company: String = binding.mainSpecificCompagnyInput.text.toString();
+            val company: String = binding.mainSpecificCompagnyInput.text.toString()
             if (company == "") {
                 showMessageDialog(resources.getString(R.string.error_select_company))
                 return
             }
 
-            var sector = binding.mainSpecificSectorInput.selectedItem.toString();
+            val sector = binding.mainSpecificSectorInput.selectedItem.toString()
 
-            var experience: Int
+            val experience: Int
             try {
                 experience = binding.mainSpecificExperienceInput.text.toString().toInt()
                 if (experience < MIN_EXPERIENCE || experience > MAX_EXPERIENCE) {
