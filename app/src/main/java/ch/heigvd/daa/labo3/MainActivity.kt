@@ -1,6 +1,7 @@
 package ch.heigvd.daa.labo3
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -236,26 +237,34 @@ class MainActivity : AppCompatActivity() {
      * Display the date picker dialog
      */
     private fun showDatePickerDialog() {
-        val calendarView = CalendarView(this)
+
         val currentDate = Calendar.getInstance()
-        calendarView.date = currentDate.timeInMillis
 
-        val dialogBuilder = AlertDialog.Builder(this)
-            .setView(calendarView)
-            .setPositiveButton("OK") { dialog, _ ->
-                var selectedDate: CharSequence = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
-                    .format(Date(calendarView.date))
-                // Mettez à jour votre EditText avec la date sélectionnée
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, monthOfYear, dayOfMonth ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+
+                // Formatte la date en fonction de la langue et de la région
+                // grâce à Locale.getDefault()
+                val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+                val formattedDate = dateFormat.format(selectedDate.time)
+
+                // Met à jour EditText avec la date sélectionnée
                 val birthdateInput = findViewById<EditText>(R.id.main_base_birthdate_input)
-                birthdateInput.setText(selectedDate)
-                dialog.dismiss()
-            }
-            .setNegativeButton("Annuler") { dialog, _ ->
-                dialog.dismiss()
-            }
+                birthdateInput.setText(formattedDate)
+            },
+            currentDate.get(Calendar.YEAR),
+            currentDate.get(Calendar.MONTH),
+            currentDate.get(Calendar.DAY_OF_MONTH)
+        )
 
-        val alertDialog = dialogBuilder.create()
-        alertDialog.show()
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Annuler") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        datePickerDialog.show()
     }
 
     /**

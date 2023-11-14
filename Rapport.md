@@ -7,14 +7,14 @@
   
 ### 4.1 Pour le champ remark, destiné à accueillir un texte pouvant être plus long qu’une seule ligne, quelle configuration particulière faut-il faire dans le fichier XML pour que son comportement soit correct ? Nous pensons notamment à la possibilité de faire des retours à la ligne, d’activer le correcteur orthographique et de permettre au champ de prendre la taille nécessaire.
 
-Nous avons ajouté android:inputType="textMultiLine". Ceci va permettre à notre texte d'avoir des lignes multiples et typqieuement ajouter des retours à la ligne. Le correcteur orthographique est normalement acttivé par défaut dans le widget. Nous n'avons donc pas à nous soucier de cela. Quant à la taille nécessaire, nous matchons le parent pour la longueur et faisons un "wrap_content" pour la hauteur. Ce qui fait que le texte va s'aggrandir en fonction de ce que l'on rentre.
+Nous avons ajouté android:inputType="textMultiLine". Ceci va permettre à notre texte d'avoir des lignes multiples et typqieuement ajouter des retours à la ligne. Le correcteur orthographique est normalement acttivé par défaut dans le widget. Nous n'avons donc pas à nous soucier de cela. Quant à la taille nécessaire, nous "matchons" le parent pour la longueur et faisons un "wrap_content" pour la hauteur. Ce qui fait que le texte va s'aggrandir en fonction de ce que l'on rentre."
 
 ### 4.2 Pour afficher la date sélectionnée via le DatePicker nous pouvons utiliser un DateFormat permettant par exemple d’afficher 12 juin 1996 à partir d’une instance de Date. Le formatage des dates peut être relativement différent en fonction des langues, la traduction des mois par exemple, mais également des habitudes régionales différentes : la même date en anglais britannique serait 12th June 1996 et en anglais américain June 12, 1996. Comment peut-on gérer cela au mieux ?
 
 
 
 ### 4.3.a. Si vous avez utilisé le DatePickerDialog1 du SDK. En cas de rotation de l’écran du smartphone lorsque le dialogue est ouvert, une exception android.view.WindowLeaked sera présente dans les logs, à quoi est-elle due ?
-### 4.3.b. Si vous avez utilisé le MaterialDatePicker2 de la librairie Material. Est-il possible de limiter les dates sélectionnables dans le dialogue, en particulier pour une date de naissance il est peu probable d’avoir une personne née il y a plus de 110 ans ou à une date dans le futur. Comment pouvons-nous mettre cela en place ?
+Cela provient du fait que l'on essaie de montrer une boîte de dialogue après que l'activité l'ait détruite et qu'une nouvelle ait été crée. Tout cela pendant que le dialogue "DatePickerDialog" reste ouvert, va créer des opérations asynchrones. 
 
 
 

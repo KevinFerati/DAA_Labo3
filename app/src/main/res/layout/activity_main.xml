@@ -62,7 +62,6 @@
         style="@style/Input"
         android:clickable="true"
         android:focusable="false"
-        android:hint="JJ/MM/AAAA"
         android:inputType="none"
         app:layout_constraintEnd_toEndOf="@id/main_base_birthdate_icon"
         app:layout_constraintStart_toEndOf="@id/field_guideline"
