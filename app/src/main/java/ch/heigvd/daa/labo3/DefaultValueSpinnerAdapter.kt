@@ -1,6 +1,7 @@
 /**
  * Kevin Ferati, Malo Romano & Flavio Sovilla
- * Custom Spinner Adapter
+ * This Kotlin class defines a custom ArrayAdapter for use with a Spinner widget.
+ * It allows the specification of a default value, ensuring it is not selectable or visible in the dropdown list.
  */
 
 package ch.heigvd.daa.labo3

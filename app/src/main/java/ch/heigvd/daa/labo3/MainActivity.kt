@@ -1,6 +1,7 @@
 /**
  * Kevin Ferati, Malo Romano & Flavio Sovilla
- * Main Activity Aontroller
+ * This class represents the main activity of the Android application.
+ * It includes the implementation of a user interface for inputting and saving person details.
  */
 
 package ch.heigvd.daa.labo3
