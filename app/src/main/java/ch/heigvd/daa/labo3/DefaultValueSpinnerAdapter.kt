@@ -1,3 +1,8 @@
+/**
+ * Kevin Ferati, Malo Romano & Flavio Sovilla
+ * Custom Spinner Adapter
+ */
+
 package ch.heigvd.daa.labo3
 
 import android.widget.ArrayAdapter

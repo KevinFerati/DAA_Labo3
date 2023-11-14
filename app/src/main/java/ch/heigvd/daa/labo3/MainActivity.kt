@@ -1,3 +1,8 @@
+/**
+ * Kevin Ferati, Malo Romano & Flavio Sovilla
+ * Main Activity Aontroller
+ */
+
 package ch.heigvd.daa.labo3
 
 import android.app.AlertDialog
