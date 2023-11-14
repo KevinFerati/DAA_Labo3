@@ -18,7 +18,7 @@ _Pour afficher la date sélectionnée via le DatePicker nous pouvons utiliser un
 Pour gérer les différences de formatage des dates en fonction de la langue et des régions, nous utilisons Locale.getDefault() dans l'instantiation de l'objet SimpleDateFormat. Cette approche assure que le formatage des dates suivra les paramètres régionaux du dispositif sur lequel l'application est exécutée. En optant pour Locale.getDefault(), nous reprenons ainsi le formatage régional du téléphone de l'utilisateur. Ceci permettra d'afficher la date de l'utilisateur selon son choix de région. Il est notamment possible d'ajouter un format spécifique en indiquant la région souhaitée (exemple: SimpleDateFormat(DATE_FORMAT, Locale.US) pour afficher une date sous forme américaine)
 
 
-### 3.a. 
+### 3.
 _Si vous avez utilisé le DatePickerDialog1 du SDK. En cas de rotation de l’écran du smartphone lorsque le dialogue est ouvert, une exception android.view.WindowLeaked sera présente dans les logs, à quoi est-elle due ?_
 
 La présence de l'exception android.view.WindowLeaked lors de l'utilisation du DatePickerDialog du SDK est généralement due au fait qu'on tente d'afficher une boîte de dialogue après la destruction de l'activité à laquelle elle est rattachée. Lorsqu'une activité est détruite (exemple: lors d'une rotation d'écran entraînant sa recréation) les anciennes instances de vues ou de dialogues peuvent causer des fuites de fenêtres si elles ne sont pas correctement gérées (état asynchrone entre la fenêtre et l'activité).  
