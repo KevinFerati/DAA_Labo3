@@ -19,6 +19,7 @@ import android.util.Log
 import android.view.View
 import android.widget.CalendarView
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Spinner
 import androidx.core.view.children
 import ch.heigvd.daa.labo3.databinding.ActivityMainBinding
@@ -85,9 +86,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCancel.setOnClickListener {
-            for (view in binding.root.children) {
+            for (view in binding.mainLayout.children) {
                 if (view is EditText) {
                     view.text.clear()
+                }
+                if (view is Spinner){
+                    view.setSelection(0)
                 }
             }
         }
